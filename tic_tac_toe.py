@@ -121,7 +121,7 @@ blank = "__"
         #check which element (X or O) it contains and declare that person a winner
 
 #I can't remember what the below line does. I think it's supposed to end the
-#game by figuring out if there are no more blanks left in the board. 
+#game by figuring out if there are no more blanks left in the board.
 
 while blank in (item for sublist in board for item in sublist):
 
@@ -235,11 +235,7 @@ while blank in (item for sublist in board for item in sublist):
 
     #print("line 73, vertical_wins: ", vertical_wins)
 
-    # lst in board:
-    #     board.append(lst[0])
-    # vertical_1 = [list_1[0], list_2[0], list_3[0]]
-    # vertical_2 = [list_1[1], list_2[1], list_3[1]]
-    # vertical_3 = [list_1[2], list_2[2], list_3[2]]
+
     diagonal_topleft = [board[0][0], board[1][1], board[2][2]]
     #print("diagonal_topleft, line 76", diagonal_topleft)
     diagonal_btmleft = [board[0][2], board[1][1], board[2][0]]
@@ -322,37 +318,7 @@ else:
 
 #What happens if the user inputs an unuseable format or a space that's already taken?
 
-#for row in coordinates:
-#    print(row)
-#x_coordinate = input("X, please input your coordinates: ")
-#What about if someone puts in wrong numbers or format?
 
-#1 <= x_coordinate <= 3
-#1 <= y_coordinate <= 3
-
-#if x < 1 or x > 3
-#    print("Please enter integers between 1 and 3, separated by a comma. Ie. 2,3")
-    #and then request a new input
-
-# generic_row = list()
-
-
-#
-# print(rows)
-#
-#if the input coordinate is no longer in the list, print("spot full. please enter different coordinate")
-
-# for x in rows:
-#     print(x)
-#
-#
-#
-#
-# x_coordinate = input("Player X: where would you like to play?")
-# print(x_coordinate)
-#
-# if x_coordinate in rows:
-#     #put an X in the right place
 
 #Maybe there’s a possibility that I could associate all the number with their
 # row instead of having two numbers. For instance, row_1 could contain just
