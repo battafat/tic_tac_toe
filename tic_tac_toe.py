@@ -310,8 +310,7 @@ while blank in (item for sublist in board for item in sublist):
         print(" ")
 
 
-#    for lst in board:
-#        print(lst)
+
 
 else:
     print("Game Over! Draw")
