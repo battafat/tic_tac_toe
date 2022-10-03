@@ -115,32 +115,16 @@ def find_winner(board):
         #second: if it doesn't contain blank -- ie, all moves have been made in that possible
         #       win list -- are all of those moves equal? (all X or all O)
             if win.count(win[0]) == len(win):
+
                 print(" ")
         #This prints the winner by simply checking which character occupies the
         #the initial index in the winning list.
                 return win[0]
     return False
 
-#has_winner = find_winner(board)
-        #check which element (X or O) it contains and declare that person a winner
+def user_moves(coordinates, board, player_symbol):
 
-#The line below checks all the items in each list of coordinates to see if any
-#of them are blank.
-positions = [item for sublist in board for item in sublist]
-
-
-
-while blank in positions:
-
-    announce_winner = find_winner(board)
-    print("line 132, announce_winner", announce_winner)
-
-    for i in range(3):
-            print(" ")
-
-#X makes their move.
-
-    x_coordinate = input("Player X, enter comma-separated integers for row and column: ")
+    x_coordinate = input(f'Player {player_symbol}, enter comma-separated integers for row and column: ')
 
     #need to continue if the player makes an impossible move
     #for x in coordinates:
@@ -161,54 +145,57 @@ while blank in positions:
                 #The below line checks if the position is taken:
                 if board[row_index][column_index] != blank :
                     print("Position taken. Enter new coordinates: ")
+                    return True
 
                 else:
 
-                    board[row_index][column_index] = "X"
+                    board[row_index][column_index] = player_symbol
                     print(" ")
                     for lst in board:
                         print(lst)
 
+#has_winner = find_winner(board)
+        #check which element (X or O) it contains and declare that person a winner
+
+#The line below checks all the items in each list of coordinates to see if any
+#of them are blank
+
+positions = [item for sublist in board for item in sublist]
+
+
+while blank in positions:
+
     announce_winner = find_winner(board)
-    print("line 132, announce_winner", announce_winner)
+
+    for i in range(3):
+            print(" ")
+
+    #O's turn:
+
+    X_moves = user_moves(coordinates, board, "X")
+    #The below repeats X's turn if they enter a move that's already been played.
+    if X_moves == True:
+        user_moves(coordinates, board, "X")
+
+    announce_winner = find_winner(board)
     if type(announce_winner) == str:
+        print("X wins!")
         break
 
-
+    print(" ")
+    print(" ")
 
     #O's Turn:
-    print(" ")
-    print(" ")
 
-    o_coordinate = input("Player O, enter comma-separated integers for row and column: ")
-
-
-    for row in coordinates:
-
-        for x in row:
-
-            if x == o_coordinate:
-
-                column_index = row.index(x)
-
-                print(" ")
-                print(" ")
-
-                row_index = coordinates.index(row)
-
-                #The below line checks if the position is taken:
-                if board[row_index][column_index] != blank :
-                    print("Position taken. Enter new coordinates: ")
-                    continue
-                else:
-                    board[row_index][column_index] = "O"
-                    for lst in board:
-                        print(lst)
-    #print("line 210, vertical_wins", vertical_wins)
+    O_moves = user_moves(coordinates, board, "O")
+    #The below repeats O's turn if they enter a move that's already been played.
+    if O_moves == True:
+        user_moves(coordinates, board, "O")
 
     announce_winner = find_winner(board)
     print("line 132, announce_winner", announce_winner)
     if type(announce_winner) == str:
+        print("O wins!")
         break
 
 
