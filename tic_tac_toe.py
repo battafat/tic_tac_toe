@@ -10,7 +10,6 @@ list_3 = ["__", "__", "__"]
 
 
 
-
 board.append(list_1)
 board.append(list_2)
 board.append(list_3)
@@ -58,7 +57,7 @@ blank = "__"
 
 def find_winner(board):
     # if winner, return winner
-    # else: rreturn faslse
+    # else: return faslse
     horizontal_wins = []
 
     for row in board:
@@ -122,9 +121,18 @@ def find_winner(board):
                 return win[0]
     return False
 
+
+
+def move_validity(coordinates, move):
+    coordinates_concatenated = [item for sublist in coordinates for item in sublist]
+    if move not in (coordinates_concatenated):
+        return False
+
+
+
 def user_moves(coordinates, board, player_symbol):
 
-    x_coordinate = input(f'Player {player_symbol}, enter comma-separated integers for row and column: ')
+    move = input(f'Player {player_symbol}, enter comma-separated integers for row and column: ')
 
     #need to continue if the player makes an impossible move
     #for x in coordinates:
@@ -132,11 +140,17 @@ def user_moves(coordinates, board, player_symbol):
                                   #not all positions all at once
     print("")
 
+    check_validity = move_validity(coordinates, move)
+    if check_validity == False:
+        print("Invalid format. Repeat turn: row number,column number -- no space.")
+        print("")
+        user_moves(coordinates, board, player_symbol)
+
     for row in coordinates:
 
         for x in row:
 
-            if x == x_coordinate:
+            if x == move:
                 #This determines the column in which to enter the move in board.
                 column_index = row.index(x)
                 #This determines the row in which to enter the move in board.
@@ -151,6 +165,7 @@ def user_moves(coordinates, board, player_symbol):
 
                     board[row_index][column_index] = player_symbol
                     print(" ")
+                    #print(positions)
                     for lst in board:
                         print(lst)
 
@@ -165,7 +180,7 @@ positions = [item for sublist in board for item in sublist]
 
 while blank in positions:
 
-    announce_winner = find_winner(board)
+#    announce_winner = find_winner(board)
 
     for i in range(3):
             print(" ")
@@ -176,6 +191,8 @@ while blank in positions:
     #The below repeats X's turn if they enter a move that's already been played.
     if X_moves == True:
         user_moves(coordinates, board, "X")
+
+#    print(positions)
 
     announce_winner = find_winner(board)
     if type(announce_winner) == str:
@@ -193,7 +210,6 @@ while blank in positions:
         user_moves(coordinates, board, "O")
 
     announce_winner = find_winner(board)
-    print("line 132, announce_winner", announce_winner)
     if type(announce_winner) == str:
         print("O wins!")
         break
@@ -210,7 +226,6 @@ else:
 
 #What happens if the user inputs an unuseable format or a space that's already taken?
 
-winner = find_winner(board)
 
 
 #Maybe there’s a possibility that I could associate all the number with their
