@@ -164,6 +164,7 @@ def user_moves(coordinates, board, player_symbol):
                 else:
 
                     board[row_index][column_index] = player_symbol
+
                     print(" ")
                     #print(positions)
                     for lst in board:
@@ -179,11 +180,10 @@ positions = [item for sublist in board for item in sublist]
 
 
 while blank in positions:
-
 #    announce_winner = find_winner(board)
 
     for i in range(3):
-            print(" ")
+        print(" ")
 
     #O's turn:
 
@@ -191,8 +191,11 @@ while blank in positions:
     #The below repeats X's turn if they enter a move that's already been played.
     if X_moves == True:
         user_moves(coordinates, board, "X")
+    positions = [item for sublist in board for item in sublist]
+    if blank not in positions:
+        print("Game Over! Draw")
+        break
 
-#    print(positions)
 
     announce_winner = find_winner(board)
     if type(announce_winner) == str:
@@ -208,6 +211,7 @@ while blank in positions:
     #The below repeats O's turn if they enter a move that's already been played.
     if O_moves == True:
         user_moves(coordinates, board, "O")
+    positions = [item for sublist in board for item in sublist]
 
     announce_winner = find_winner(board)
     if type(announce_winner) == str:
