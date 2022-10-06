@@ -176,18 +176,22 @@ def user_moves(coordinates, board, player_symbol):
 #The line below checks all the items in each list of coordinates to see if any
 #of them are blank
 
+
 positions = [item for sublist in board for item in sublist]
+
+current_player = "X"
+
 
 
 while blank in positions:
-#    announce_winner = find_winner(board)
 
     for i in range(3):
         print(" ")
 
-    #O's turn:
 
-    X_moves = user_moves(coordinates, board, "X")
+    #X's turn:
+#abstract
+    X_moves = user_moves(coordinates, board, current_player)
     #The below repeats X's turn if they enter a move that's already been played.
     if X_moves == True:
         user_moves(coordinates, board, "X")
@@ -201,22 +205,14 @@ while blank in positions:
     if type(announce_winner) == str:
         print("X wins!")
         break
+#below just switches between players
+    if current_player == "X":
+        current_player = "O"
+    else:
+        current_player = "X"
 
     print(" ")
     print(" ")
-
-    #O's Turn:
-
-    O_moves = user_moves(coordinates, board, "O")
-    #The below repeats O's turn if they enter a move that's already been played.
-    if O_moves == True:
-        user_moves(coordinates, board, "O")
-    positions = [item for sublist in board for item in sublist]
-
-    announce_winner = find_winner(board)
-    if type(announce_winner) == str:
-        print("O wins!")
-        break
 
 
     for i in range(3):
