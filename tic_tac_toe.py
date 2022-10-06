@@ -195,10 +195,9 @@ while blank in positions:
     #The below repeats X's turn if they enter a move that's already been played.
     if X_moves == True:
         user_moves(coordinates, board, "X")
+#When I comment out the below positions line, the "game over" functionality doesn't work
+#positions doesn't get updated without it. I checked by printing it.
     positions = [item for sublist in board for item in sublist]
-    if blank not in positions:
-        print("Game Over! Draw")
-        break
 
 
     announce_winner = find_winner(board)
@@ -223,6 +222,7 @@ while blank in positions:
 
 else:
     print("Game Over! Draw")
+    print("")
 
 #What happens if the user inputs an unuseable format or a space that's already taken?
 
