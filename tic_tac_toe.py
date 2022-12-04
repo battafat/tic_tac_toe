@@ -129,8 +129,28 @@ def move_validity(coordinates, move):
         return False
 
 
+corners = "1,1", "1,3", "3,1", "3,3"
+edges = "1,2", "2,1", "2,3", "3,2"
+center = "2,2"
+
+def computer_moves(coordinates, board):
+
+    for row in board:
+        row_number = board[index(row)]
+        for position in row:
+            if position == blank:
+                #I want it to return-- what? coordinates in string format
+                that_one = board[index(row) + 1][index(position) + 1]
+                return that_one
+
 
 def user_moves(coordinates, board, player_symbol):
+
+    if player_symbol == "O":
+        where_move = computer_moves(coordinates, board)
+        if where_move == space:
+            move = space
+            return move
 
     move = input(f'Player {player_symbol}, enter comma-separated integers for row and column: ')
 
@@ -140,12 +160,14 @@ def user_moves(coordinates, board, player_symbol):
                                   #not all positions all at once
     print("")
 
+
     check_validity = move_validity(coordinates, move)
     if check_validity == False:
         print("Invalid format. Repeat turn: row number,column number -- no space.")
         print("")
         user_moves(coordinates, board, player_symbol)
 
+#this could be its own function 
     for row in coordinates:
 
         for x in row:
