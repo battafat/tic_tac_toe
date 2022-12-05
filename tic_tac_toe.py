@@ -37,8 +37,6 @@ blank = "__"
 
 
 
-
-
 #Noam said to think about inputs for variables/arguments, I think. So what are my
 #inputs for make_move?:
 #   board
@@ -181,7 +179,7 @@ def user_moves(coordinates, board, player_symbol):
                 #The below line checks if the position is taken:
                 if board[row_index][column_index] != blank :
                     print("Position taken. Enter new coordinates: ")
-                    return True
+                    return "Position taken"
 
                 else:
 
@@ -192,59 +190,63 @@ def user_moves(coordinates, board, player_symbol):
                     for lst in board:
                         print(lst)
 
+
 #has_winner = find_winner(board)
         #check which element (X or O) it contains and declare that person a winner
 
 #The line below checks all the items in each list of coordinates to see if any
 #of them are blank
 
-
-positions = [item for sublist in board for item in sublist]
-
-current_player = "X"
-
-
-
-while blank in positions:
-
-    for i in range(3):
-        print(" ")
-
-
-    #X's turn:
-#abstract
-    X_moves = user_moves(coordinates, board, current_player)
-    #The below repeats X's turn if they enter a move that's already been played.
-    if X_moves == True:
-        user_moves(coordinates, board, "X")
-#When I comment out the below positions line, the "game over" functionality doesn't work
-#positions doesn't get updated without it. I checked by printing it.
+def start_game():
     positions = [item for sublist in board for item in sublist]
 
-
-    announce_winner = find_winner(board)
-    if type(announce_winner) == str:
-        print("X wins!")
-        break
-#below just switches between players
-    if current_player == "X":
-        current_player = "O"
-    else:
-        current_player = "X"
-
-    print(" ")
-    print(" ")
+    current_player = "X"
 
 
-    for i in range(3):
+
+    while blank in positions:
+
+        for i in range(3):
+            print(" ")
+
+
+        #X's turn:
+    #abstract
+        X_moves = user_moves(coordinates, board, current_player)
+        #The below repeats X's turn if they enter a move that's already been played.
+        if X_moves == "Position Taken":
+            user_moves(coordinates, board, "X")
+    #When I comment out the below positions line, the "game over" functionality doesn't work
+    #positions doesn't get updated without it. I checked by printing it.
+        positions = [item for sublist in board for item in sublist]
+
+
+        announce_winner = find_winner(board)
+        if type(announce_winner) == str:
+            print("X wins!")
+            break
+    #below just switches between players
+        if current_player == "X":
+            current_player = "O"
+        else:
+            current_player = "X"
+
+        print(" ")
         print(" ")
 
 
+        for i in range(3):
+            print(" ")
 
 
-else:
-    print("Game Over! Draw")
-    print("")
+
+
+    else:
+        print("Game Over! Draw")
+        print("")
+
+if __name__ == "__main__":
+    start_game()
 
 #What happens if the user inputs an unuseable format or a space that's already taken?
 
