@@ -4,6 +4,16 @@ possible_moves = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
 number_of_squares = (number_of_rows)**2
 
+def play_game():
+# This function starts the game by making the board, printing the board, and
+# running alternating turns until the game is over.
+
+    board = make_board(number_of_squares)
+    display_board(board)
+    player_symbol = "X"
+
+    loop_turns_until_win_or_draw(board, player_symbol)
+
 def make_board(number_of_squares):
 #This sets up the 3 by 3 tic-tac-toe board as a dictionary.
     board = {}
@@ -124,14 +134,5 @@ def loop_turns_until_win_or_draw(board, player_symbol):
         print("\nGame Over! Draw\n")
         return
 
-def play_game():
-# This function starts the game by making the board, printing the board, and
-# running alternating turns until the game is over.
-
-    board = make_board(number_of_squares)
-    display_board(board)
-    player_symbol = "X"
-
-    loop_turns_until_win_or_draw(board, player_symbol)
 
 play_game()
