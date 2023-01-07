@@ -26,10 +26,7 @@ def check_move_validity(user_move, board, player_symbol):
 #If it is in the possible_moves list, we take the int of the string they've entered.
 #If not, the user is prompted to enter a valid move.
     if user_move not in possible_moves:
-        # print("")
         print("\nMove invalid. Input one of the remaining integers between 1 and 9.\n")
-        # print("")
-        # make_move(board, player_symbol)
         return False
     else:
         return int(user_move)
