@@ -7,10 +7,9 @@ number_of_squares = (number_of_rows)**2
 def make_board(number_of_squares):
 #This sets up the 3 by 3 tic-tac-toe board as a dictionary.
     board = {}
-    counter = 1
-    for x in range(number_of_squares):
-        board[counter] = counter
-        counter += 1
+
+    for x in range(1, number_of_squares + 1):
+        board[x] = x
 
     return board
 
