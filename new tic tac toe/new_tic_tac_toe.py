@@ -98,20 +98,20 @@ def check_for_winner(board, player_symbol):
                         diagonal_1,
                         diagonal_2
                         ]
-    for win in possible_win_lists:
-        if win.count(win[0]) == len(win):
+    for possible_win in possible_win_lists:
+        first_value = possible_win[0]
+        if possible_win.count(first_value) == len(possible_win):
             return True
 
 def switch_player_symbol(player_symbol):
 # This function alternates the player, starting with X as the default 1st to move.
 
     if player_symbol == "X":
-        player_symbol = "O"
-        # return player_symbol
-    else:
-        player_symbol = "X"
+        return "O"
 
-    return player_symbol
+    return "X"
+
+
 
 def loop_turns_until_win_or_draw(board, player_symbol):
 # This function loops the alternating turns.
