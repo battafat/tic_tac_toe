@@ -1,5 +1,5 @@
 # Introduction:
-# The new_tic_tac_toe.py program is a tic-tac-toe game for two human players in the terminal. It generally follows the conventional rules of tic-tac-toe. 
+# A tic-tac-toe game for two human players in the terminal. It generally follows the conventional rules of tic-tac-toe. 
 # In this case, X always goes first. 
 
 # How to play: 
